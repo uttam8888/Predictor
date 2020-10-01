@@ -1,0 +1,282 @@
+.tic-tac-col {
+    border: 2px solid black;
+    text-align: center;
+    height: 9rem;
+    background-color: cadetblue;
+}
+
+.tic-tac--grid {
+    border: 3px solid;
+}
+
+.delete-icon {
+    height: 6rem;
+    margin-top: 20px;
+    // width: 7rem;
+}
+
+
+
+.col-spinner {
+    width: 100px;
+    margin-top: 30px;
+    height: 80px;
+}
+
+.drpDown{
+    background-color: white;
+    height: 36px;
+}
+
+.timerDrpDown{
+    background-color: white;
+    height: 15px;
+}
+
+ion-chip {
+    background-color: black;
+    height: 40px;
+}
+
+.ion-chip-msg {
+    background-color: blue;
+    margin-left: 60px;
+}
+
+ion-label {
+    color: white;
+}
+
+.divider-horizontal {
+    --background:black;
+    min-height: 10px;
+    margin-top: -60px;
+}
+
+.divider-diagonal {
+    --background:black;
+    min-height: 10px;
+    margin-top: -60px;
+    transform: rotate(45deg);
+}
+
+.divider-vertical {
+    --background:black;
+    min-height: 10px;
+    margin-top: -60px;
+    transform: rotate(90deg);
+}
+
+.divider-diagonal-right {
+    --background: black;
+    min-height: 10px;
+    margin-top: -60px;
+    transform: rotate(135deg);
+}
+
+.ion-chip-horizontal {
+    background-color: black;
+    height: 10px;
+    width: 126px;
+    margin-top: -126px;
+    margin-left: -9px;
+}
+
+.ion-chip-vertical {
+    background-color: black;
+    height: 10px;
+    width: 126px;
+    margin-top: -126px;
+    margin-left: -9px;
+}
+
+.ion-chip-test-diagonal {
+    background-color: black;
+    height: 10px;
+    width: 217px;
+    margin-top: -83px;
+    margin-left: -36px;
+    transform: rotate(45deg);
+}
+
+.ion-chip-test-diagonal2 {
+    background-color: black;
+    height: 10px;
+    width: 233px;
+    margin-top: -106px;
+    margin-left: -45px;
+    transform: rotate(50deg);
+}
+
+.ion-chip-test-diagonal-latest {
+
+    background-color: black;
+    height: 10px;
+    width: 198px;
+    margin-top: -129px;
+    margin-left: -50px;
+    margin-bottom: 15px;
+    transform: rotate(50deg);
+    
+    // background-color: black;
+    // height: 10px;
+    // width: 195px;
+    // margin-top: -121px;
+    // margin-left: -49px;
+    // margin-bottom: 52px;
+    // transform: rotate(50deg);
+}
+
+
+.testdumb {
+    background-color: black;
+    height: 10px;
+    width: 198px;
+    margin-top: -129px;
+    margin-left: -50px;
+    margin-bottom: 15px;
+    transform: rotate(50deg);
+}
+
+
+// ============================Timer Test =============================
+
+.wrapper {
+    position: relative;
+    margin: 40px auto;
+    background: white;
+  }
+
+  .wrapper,
+  .wrapper * {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .wrapper {
+    width: 250px;
+    height: 250px;
+  }
+
+  .wrapper .pie {
+    width: 50%;
+    height: 100%;
+    transform-origin: 100% 50%;
+    position: absolute;
+    background: #08C;
+    border: 5px solid rgba(0, 0, 0, 0.5);
+  }
+
+  .wrapper .spinner {
+    border-radius: 100% 0 0 100% / 50% 0 0 50%;
+    z-index: 200;
+    border-right: none;
+    animation: rota 10s linear infinite;
+  }
+
+  .wrapper:hover .spinner,
+  .wrapper:hover .filler,
+  .wrapper:hover .mask {
+    animation-play-state: running ;
+  }
+
+  .wrapper .filler {
+    border-radius: 0 100% 100% 0 / 0 50% 50% 0;
+    left: 50%;
+    opacity: 0;
+    z-index: 100;
+    animation: opa 10s steps(1, end) infinite reverse;
+    border-left: none;
+  }
+
+  .wrapper .mask {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    background: inherit;
+    opacity: 1;
+    z-index: 300;
+    animation: opa 10s steps(1, end) infinite;
+  }
+
+  @keyframes rota {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes opa {
+    0% {
+      opacity: 1;
+    }
+
+    50%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+// ============================Dummy test Down css ==================
+:root {
+    ion-img {
+      /** 
+       * Bug fix for:
+       * https://github.com/ionic-team/ionic/issues/18734
+       */
+      min-height: 1px !important;
+    }
+  }
+
+  spinner {
+    width: 350px;
+    height: 200px;
+    margin-top: 50px;
+}
+
+  .coin-select
+  {
+  padding-left:65px;
+  padding-right:4px;
+  margin-top:10px;
+  background:white;
+  color:black;
+  margin-left:0px;
+  background-repeat: no-repeat; 
+  width:100%;
+   background-position: 2% 50%; 
+  
+  
+}
+
+.backbtn {
+  height: 2rem;
+  width: 60px;
+  padding: 8px;
+  background-color: transparent;
+}
+
+.ioncontent-bg {
+	// --background: url("/assets/images/tic1.jpg") 0 0/100% 100% no-repeat;
+	--background: url("/assets/images/wal37.gif") 0 0/100% 100% no-repeat
+}
+
+h1 {
+	font-family: 'Lobster', cursive;
+    font-size: 40px;
+    margin-left: 30px;
+    margin-top: 8px;
+  }
+h1, h2 {
+    color: yellow;
+    text-shadow: 1px 0 0 gray, -1px 0 0 gray, 0 1px 0 gray, 0 -1px 0 gray, 1px 1px gray, -1px -1px 0 gray, 1px -1px 0 gray, -1px 1px 0 gray;
+}
+
+.card-css {
+  border-radius: 40px;
+  background-color: deepskyblue;
+}

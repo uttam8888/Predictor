@@ -1,0 +1,302 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <!-- <ion-title>Utility App</ion-title> -->
+    <h1>Online Players</h1>
+    <ion-buttons slot="start" auto-hide="false">
+      <ion-menu-button menu="first"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding ioncontent-bg">
+  <!-- <ion-item>
+    <a href="javascript:void(0);" [routerLink]="['/home']">
+      <ion-icon name="arrow-back-sharp"></ion-icon>&nbsp;&nbsp;&nbsp;Back
+    </a>
+  </ion-item> -->
+
+  <!-- <ion-card> -->
+  <!-- <ion-card-header>
+      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+      <ion-card-title>Card Title</ion-card-title>
+    </ion-card-header> -->
+
+  <!-- <ion-card-content> -->
+
+
+
+  <ion-card *ngIf="showBoard" style="border-radius: 40px;">
+    <ion-card-content style="background-color: gold;">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="3.5">
+            <input style="border-radius: 40px;" type="text" readonly class="form-control" value="Player 1">
+          </ion-col>
+          <ion-col size="4.5">
+            <input style="border-radius: 40px;" type="text" readonly class="form-control" [(ngModel)]="playerOneName">
+          </ion-col>
+          <ion-col size="4">
+            <input style="border-radius: 40px;" type="text" readonly class="form-control" [(ngModel)]="playerOneSign">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="3.5">
+            <input style="border-radius: 40px;" type="text" readonly class="form-control" value="Player 2">
+          </ion-col>
+          <ion-col size="4.5">
+            <input style="border-radius: 40px;" type="text" readonly class="form-control" [(ngModel)]="playerTwoName">
+          </ion-col>
+          <ion-col size="4">
+            <input style="border-radius: 40px;" type="text" readonly class="form-control" [(ngModel)]="playerTwoSign">
+          </ion-col>
+        </ion-row>
+
+
+
+        <ion-row class="ion-align-items-center">
+          <ion-col size="4">
+            <span><span>
+                <ion-badge color="secondary">{{playerOneName}}</ion-badge>
+              </span><br><span>
+                <ion-badge color="warning">Win : {{playerOneWinCount}}</ion-badge>
+              </span></span>
+          </ion-col>
+          <ion-col size="5">
+            <ion-badge color="success">Game On</ion-badge><br>
+            <!-- <ion-button *ngIf="retryFlag && !startFlag" color="danger" (click)="start()">Start</ion-button> -->
+            <ion-button *ngIf="!retryFlag" color="danger" (click)="retry()">Re-try</ion-button>
+            <!-- <ion-button  color="danger" (click)="retry()">Re-try</ion-button> -->
+          </ion-col>
+          <ion-col size="3">
+            <span><span>
+                <ion-badge color="secondary">{{playerTwoName}}</ion-badge>
+              </span><br><span>
+                <ion-badge color="warning">Win : {{playerTwoWinCount}}</ion-badge>
+              </span></span>
+          </ion-col>
+
+        </ion-row>
+
+
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- <p id="demo"></p> -->
+
+  <!-- <input  id="demo1" type="text" > -->
+
+  <!-- <div class="wrapper"> -->
+  <!-- <div class="pie spinner"></div>
+    <div class="pie filler"></div>
+    <div class="mask"></div> -->
+  <!-- </div> -->
+  <!-- <app-countdown-timer class="item-countdown" [end]="details?.expirationDate" [units]="{from: 'minute', to: 'second'}"></app-countdown-timer> -->
+  <!-- <ion-spinner *ngIf="!playerOneEnabled" name="lines" color="secondary"></ion-spinner> -->
+
+  <!-- <ion-card-header *ngIf="!winnerCall" color="secondary"> -->
+  <!-- <ion-card-title>Hurray ! {{winner}} You have rocked it !</ion-card-title> -->
+  <!-- </ion-card-header> -->
+  <ion-chip *ngIf="!winnerCall && !timeExpMsg" class="ion-chip-msg">
+    <ion-label>Hurray ! {{winner}} You have rocked it !</ion-label>
+  </ion-chip>
+  <ion-chip *ngIf="timeExpMsg" class="ion-chip-msg">
+    <ion-label>Sorry ! Time got expired</ion-label>
+  </ion-chip>
+
+  <!-- <ion-chip class="ion-chip-test"><ion-label>{{spinnerText}}</ion-label></ion-chip> -->
+  <ion-grid *ngIf="showTicTacTable" class="">
+
+    <ion-row>
+      <ion-col size="4" (click)="systemEnable ? '' : col_one()" class="tic-tac-col">
+        <ion-spinner *ngIf="!col_one_enable" name="crescent" color="secondary" class="col-spinner"></ion-spinner>
+        <ion-chip *ngIf="!col_one_enable" style="margin-top: -100px;">
+          <ion-label>{{spinnerText}}</ion-label>
+        </ion-chip>
+        <input *ngIf="col_one_enable && col_one_cross_enable" type="image" src="../assets/images/cross4-red.png"
+          alt="Submit" class="delete-icon">
+        <input *ngIf="col_one_enable && !col_one_cross_enable" type="image" src="../assets/images/circle3-black.png"
+          alt="Submit" class="delete-icon">
+        <!-- <ion-chip *ngIf="col_one_horizontal" class="ion-chip-horizontal"><ion-label></ion-label></ion-chip> -->
+        <ion-item-divider *ngIf="col_one_horizontal" class="divider-horizontal"></ion-item-divider>
+        <ion-item-divider *ngIf="col_one_vertical" class="divider-vertical"></ion-item-divider>
+        <ion-item-divider *ngIf="col_one_diagonal" class="divider-diagonal"></ion-item-divider>
+      </ion-col>
+      <ion-col size="4" (click)="systemEnable ? '' : col_two()" class="tic-tac-col">
+        <ion-spinner *ngIf="!col_two_enable" name="crescent" color="secondary" class="col-spinner"></ion-spinner>
+        <ion-chip *ngIf="!col_two_enable" style="margin-top: -100px;">
+          <ion-label>{{spinnerText}}</ion-label>
+        </ion-chip>
+        <input *ngIf="col_two_enable && col_two_cross_enable" type="image" src="../assets/images/cross4-red.png"
+          alt="Submit" class="delete-icon">
+        <input *ngIf="col_two_enable && !col_two_cross_enable" type="image" src="../assets/images/circle3-black.png"
+          alt="Submit" class="delete-icon">
+        <!-- <ion-chip *ngIf="col_two_horizontal" class="ion-chip-horizontal"><ion-label></ion-label></ion-chip> -->
+        <ion-item-divider *ngIf="col_two_horizontal" class="divider-horizontal"></ion-item-divider>
+        <ion-item-divider *ngIf="col_two_vertical" class="divider-vertical"></ion-item-divider>
+      </ion-col>
+      <ion-col size="4" (click)="systemEnable ? '' : col_three()" class="tic-tac-col">
+        <ion-spinner *ngIf="!col_three_enable" name="crescent" color="secondary" class="col-spinner"></ion-spinner>
+        <ion-chip *ngIf="!col_three_enable" style="margin-top: -100px;">
+          <ion-label>{{spinnerText}}</ion-label>
+        </ion-chip>
+        <input *ngIf="col_three_enable && col_three_cross_enable" type="image" src="../assets/images/cross4-red.png"
+          alt="Submit" class="delete-icon">
+        <input *ngIf="col_three_enable && !col_three_cross_enable" type="image" src="../assets/images/circle3-black.png"
+          alt="Submit" class="delete-icon">
+        <ion-item-divider *ngIf="col_three_horizontal" class="divider-horizontal"></ion-item-divider>
+        <ion-item-divider *ngIf="col_three_vertical" class="divider-vertical"></ion-item-divider>
+        <ion-item-divider *ngIf="col_three_diagonal" class="divider-diagonal-right"></ion-item-divider>
+        <!-- <ion-chip *ngIf="col_three_horizontal" class="ion-chip-horizontal"><ion-label></ion-label></ion-chip> -->
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="4" (click)="systemEnable ? '' : col_four()" class="tic-tac-col">
+        <ion-spinner *ngIf="!col_four_enable" name="crescent" color="secondary" class="col-spinner"></ion-spinner>
+        <ion-chip *ngIf="!col_four_enable" style="margin-top: -100px;">
+          <ion-label>{{spinnerText}}</ion-label>
+        </ion-chip>
+        <input *ngIf="col_four_enable && col_four_cross_enable" type="image" src="../assets/images/cross4-red.png"
+          alt="Submit" class="delete-icon">
+        <input *ngIf="col_four_enable && !col_four_cross_enable" type="image" src="../assets/images/circle3-black.png"
+          alt="Submit" class="delete-icon">
+        <!-- <ion-chip *ngIf="col_four_horizontal" class="ion-chip-horizontal"><ion-label></ion-label></ion-chip> -->
+        <ion-item-divider *ngIf="col_four_horizontal" class="divider-horizontal"></ion-item-divider>
+        <ion-item-divider *ngIf="col_four_vertical" class="divider-vertical"></ion-item-divider>
+      </ion-col>
+      <ion-col size="4" (click)="systemEnable ? '' : col_five()" class="tic-tac-col">
+        <ion-spinner *ngIf="!col_five_enable" name="crescent" color="secondary" class="col-spinner"></ion-spinner>
+        <ion-chip *ngIf="!col_five_enable" style="margin-top: -100px;">
+          <ion-label>{{spinnerText}}</ion-label>
+        </ion-chip>
+        <input *ngIf="col_five_enable && col_five_cross_enable" type="image" src="../assets/images/cross4-red.png"
+          alt="Submit" class="delete-icon">
+        <input *ngIf="col_five_enable && !col_five_cross_enable" type="image" src="../assets/images/circle3-black.png"
+          alt="Submit" class="delete-icon">
+        <ion-item-divider *ngIf="col_five_horizontal" class="divider-horizontal"></ion-item-divider>
+        <ion-item-divider *ngIf="col_five_vertical" class="divider-vertical"></ion-item-divider>
+        <ion-item-divider *ngIf="col_five_diagonal" class="divider-diagonal"></ion-item-divider>
+        <ion-item-divider *ngIf="col_five_diagonal_right" class="divider-diagonal-right"></ion-item-divider>
+        <!-- <ion-chip *ngIf="col_five_horizontal" class="ion-chip-horizontal"><ion-label></ion-label></ion-chip> -->
+        <!-- <ion-chip *ngIf="col_one_enable" class="ion-chip-test-diagonal-latest"><ion-label></ion-label></ion-chip> -->
+      </ion-col>
+      <ion-col size="4" (click)="systemEnable ? '' : col_six()" class="tic-tac-col">
+        <ion-spinner *ngIf="!col_six_enable" name="crescent" color="secondary" class="col-spinner"></ion-spinner>
+        <ion-chip *ngIf="!col_six_enable" style="margin-top: -100px;">
+          <ion-label>{{spinnerText}}</ion-label>
+        </ion-chip>
+        <input *ngIf="col_six_enable && col_six_cross_enable" type="image" src="../assets/images/cross4-red.png"
+          alt="Submit" class="delete-icon">
+        <input *ngIf="col_six_enable && !col_six_cross_enable" type="image" src="../assets/images/circle3-black.png"
+          alt="Submit" class="delete-icon">
+        <ion-item-divider *ngIf="col_six_horizontal" class="divider-horizontal"></ion-item-divider>
+        <ion-item-divider *ngIf="col_six_vertical" class="divider-vertical"></ion-item-divider>
+        <!-- <ion-chip *ngIf="col_six_horizontal" class="ion-chip-horizontal"><ion-label></ion-label></ion-chip> -->
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="4" (click)="systemEnable ? '' : col_seven()" class="tic-tac-col">
+        <ion-spinner *ngIf="!col_seven_enable" name="crescent" color="secondary" class="col-spinner"></ion-spinner>
+        <ion-chip *ngIf="!col_seven_enable" style="margin-top: -100px;">
+          <ion-label>{{spinnerText}}</ion-label>
+        </ion-chip>
+        <input *ngIf="col_seven_enable && col_seven_cross_enable" type="image" src="../assets/images/cross4-red.png"
+          alt="Submit" class="delete-icon">
+        <input *ngIf="col_seven_enable && !col_seven_cross_enable" type="image" src="../assets/images/circle3-black.png"
+          alt="Submit" class="delete-icon">
+        <ion-item-divider *ngIf="col_seven_horizontal" class="divider-horizontal"></ion-item-divider>
+        <ion-item-divider *ngIf="col_seven_vertical" class="divider-vertical"></ion-item-divider>
+        <ion-item-divider *ngIf="col_seven_diagonal" class="divider-diagonal-right"></ion-item-divider>
+        <!-- <ion-chip *ngIf="col_seven_horizontal" class="ion-chip-horizontal"><ion-label></ion-label></ion-chip> -->
+      </ion-col>
+      <ion-col size="4" (click)="systemEnable ? '' : col_eight()" class="tic-tac-col">
+        <ion-spinner *ngIf="!col_eight_enable" name="crescent" color="secondary" class="col-spinner"></ion-spinner>
+        <ion-chip *ngIf="!col_eight_enable" style="margin-top: -100px;">
+          <ion-label>{{spinnerText}}</ion-label>
+        </ion-chip>
+        <input *ngIf="col_eight_enable && col_eight_cross_enable" type="image" src="../assets/images/cross4-red.png"
+          alt="Submit" class="delete-icon">
+        <input *ngIf="col_eight_enable && !col_eight_cross_enable" type="image" src="../assets/images/circle3-black.png"
+          alt="Submit" class="delete-icon">
+        <ion-item-divider *ngIf="col_eight_horizontal" class="divider-horizontal"></ion-item-divider>
+        <ion-item-divider *ngIf="col_eight_vertical" class="divider-vertical"></ion-item-divider>
+        <!-- <ion-chip *ngIf="col_eight_horizontal" class="ion-chip-horizontal"><ion-label></ion-label></ion-chip> -->
+      </ion-col>
+      <ion-col size="4" (click)="systemEnable ? '' : col_nine()" class="tic-tac-col">
+        <ion-spinner *ngIf="!col_nine_enable" name="crescent" color="secondary" class="col-spinner"></ion-spinner>
+        <ion-chip *ngIf="!col_nine_enable" style="margin-top: -100px;">
+          <ion-label>{{spinnerText}}</ion-label>
+        </ion-chip>
+        <input *ngIf="col_nine_enable && col_nine_cross_enable" type="image" src="../assets/images/cross4-red.png"
+          alt="Submit" class="delete-icon">
+        <input *ngIf="col_nine_enable && !col_nine_cross_enable" type="image" src="../assets/images/circle3-black.png"
+          alt="Submit" class="delete-icon">
+        <ion-item-divider *ngIf="col_nine_horizontal" class="divider-horizontal"></ion-item-divider>
+        <ion-item-divider *ngIf="col_nine_vertical" class="divider-vertical"></ion-item-divider>
+        <ion-item-divider *ngIf="col_nine_diagonal" class="divider-diagonal"></ion-item-divider>
+        <!-- <ion-chip *ngIf="col_nine_horizontal" class="ion-chip-horizontal"><ion-label></ion-label></ion-chip> -->
+        <!-- <ion-chip *ngIf="col_one_enable" class="ion-chip-test-diagonal-latest"><ion-label></ion-label></ion-chip> -->
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+  <!-- </ion-card-content>
+  </ion-card> -->
+
+  <ion-card *ngIf="!showBoard" class="intro-card">
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col></ion-col>
+          <ion-col>
+            <p>Hello {{currentPlayerName}} ,</p>
+          </ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size=3></ion-col>
+          <ion-col size=8>
+            <p>Please select your sign</p>
+          </ion-col>
+          <ion-col size=1></ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-select class="drpDown" [(ngModel)]="playerOneSign" (ionChange)="signChangeOne($event)"
+              (click)="signClick()" placeholder="Select One">
+              <ion-select-option value="cross">Cross</ion-select-option>
+              <ion-select-option value="circle">Circle</ion-select-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <p>Please enter your partners id to play online</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item style="border-radius: 40px;">
+              <ion-label position="floating">Partner's Account ID</ion-label>
+              <ion-input [(ngModel)]="partnerPlayerKey"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row >
+          <ion-col size="4"></ion-col>
+          <ion-col size="4">
+            <ion-button (click)="startOnline()" shape="round">Start</ion-button>
+          </ion-col>
+          <ion-col size="4"></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+
+
+</ion-content>

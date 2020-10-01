@@ -1,0 +1,114 @@
+<ion-toolbar color="danger">
+  <ion-buttons slot="start" class="backbtn" [routerLink]="['/options']">
+    <ion-img src='../../assets/images/back6.png'></ion-img>
+  </ion-buttons>
+  <h1>Sign up</h1>
+</ion-toolbar>
+
+<ion-content color="secondary">
+  <ion-card >
+    <ion-card-content>
+      <form [formGroup]="registerForm" (ngSubmit)="onRegisterFormSubmit()">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-img style="height: 60px;" src='../../assets/images/avatar2.png'></ion-img>
+            <!-- <span style="color: cornflowerblue;">SIGN UP</span> -->
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label position="floating">First Name</ion-label>
+              <ion-input formControlName="firstName"></ion-input>
+              <div *ngIf="(firstName.invalid && firstName.touched) || firstName.dirty">
+                <small *ngIf="firstName.errors?.required" class="text-danger">First name is required</small>
+              </div>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label position="floating">Last Name</ion-label>
+              <ion-input formControlName="lastName"></ion-input>
+              <div *ngIf="(lastName.invalid && lastName.touched) || lastName.dirty">
+                <small *ngIf="lastName.errors?.required" class="text-danger">Last name is required</small>
+              </div>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label position="floating">Email</ion-label>
+              <ion-input  type="email" formControlName="email"></ion-input>
+              <div *ngIf="(email.invalid && email.touched) || email.dirty">
+                <small *ngIf="email.errors?.required" class="text-danger">Email is required</small>
+                <!--question mark(?) is a safe navigation operator-->
+                <small *ngIf="email.errors?.pattern" class="text-danger">Please provide a valid email address</small>
+              </div>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label position="floating">Password</ion-label>
+              <ion-input type="Password"  formControlName="password"></ion-input>
+              <div *ngIf="(password.invalid && password.touched) || password.dirty">
+                <small *ngIf="password.errors?.required" class="text-danger">Password is required</small>
+              </div>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <!-- <ion-item> -->
+              <!-- <ion-list> -->
+                <ion-radio-group value="biff" expand="full" formControlName="gender" >
+                  <ion-item>
+                    <ion-label>Male</ion-label>
+                    <ion-radio slot="end"   value="male"></ion-radio>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label>Female</ion-label>
+                    <ion-radio slot="end" value="female"></ion-radio>
+                  </ion-item>
+                </ion-radio-group>
+              <!-- </ion-list> -->
+            <!-- </ion-item> -->
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button type=submit expand = full size=large shape="round">
+              Register
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <span class="divider line one-line">or</span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <span class="no-account">Already a user?</span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <span class="no-account">
+            <a href="javascript:void(0);" [routerLink]="['/login']">
+              Sign in
+            </a>
+          </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

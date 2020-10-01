@@ -1,0 +1,41 @@
+ion-card {
+    border-radius: 50px;
+    height: 100px;
+    --background: url("/assets/images/wal24.jpg") 0 0/100% 100% no-repeat;
+    text-align: center;
+}
+
+ion-grid {
+    height: 100%;
+  
+    ion-row {
+      height: 30%;
+    }
+}
+
+.ioncontent-bg {
+	// --background: url("/assets/images/tic1.jpg") 0 0/100% 100% no-repeat;
+	--background: url("/assets/images/wal5.jpg") 0 0/100% 100% no-repeat
+}
+
+h1 {
+	font-family: 'Lobster', cursive;
+    font-size: 40px;
+    margin-top: 10px;
+    margin-left: -65px;
+  }
+h1, h2 {
+    color: yellow;
+    text-shadow: 1px 0 0 gray, -1px 0 0 gray, 0 1px 0 gray, 0 -1px 0 gray, 1px 1px gray, -1px -1px 0 gray, 1px -1px 0 gray, -1px 1px 0 gray;
+}
+
+.arrow-img {
+    height: 4rem;
+    margin-top: -70px;
+    transform: rotate(270deg);
+    margin-left: 228px;
+}
+
+// ===================================
+
+

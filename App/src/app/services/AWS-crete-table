@@ -1,0 +1,62 @@
+// Just kept it here for future purpose .
+
+CREATE TABLE calcHistory (
+  historyId int(11) NOT NULL AUTO_INCREMENT,
+  firstoperator int(11),
+  operand varchar(50),
+  secondOperator int(11),
+  result int(11),
+  historyDate DATE,
+  PRIMARY KEY (historyId)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+====================table for tic_tac_toe database=================
+
+CREATE TABLE USERS (
+   userId   INT NOT NULL AUTO_INCREMENT,
+   first_name VARCHAR (200) NOT NULL,
+   last_name  VARCHAR (200)  NOT NULL,
+   email  VARCHAR (200) NOT NULL,
+   password VARCHAR (200) NOT NULL, 
+   unique_key VARCHAR (200) NOT NULL,
+   pair_id  INT ,  
+   gender VARCHAR (25) NOT NULL,
+   registration_date DATETIME NOT NULL,
+   login_date DATETIME ,  
+   PRIMARY KEY (userId)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE USERS_PAIR (
+   user_pair_id   INT NOT NULL AUTO_INCREMENT,
+   player1_key VARCHAR (20) NOT NULL,
+   player2_key  VARCHAR (20)  NOT NULL,
+   PRIMARY KEY (user_pair_id)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE USERS_SIGN (
+   user_sign_id   INT NOT NULL AUTO_INCREMENT,
+   players_key VARCHAR (20) NOT NULL,
+   players_sign  VARCHAR (20)  NOT NULL,
+   PRIMARY KEY (user_sign_id)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE col_info (
+   col_id   INT NOT NULL AUTO_INCREMENT,
+   cell_id  INT (25) NOT NULL,
+   first_name VARCHAR (20) NOT NULL,
+   sign  VARCHAR (20)  NOT NULL,
+   unique_key VARCHAR (50) NOT NULL,
+   PRIMARY KEY (col_id)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+
+
+SELECT first_name FROM USERS WHERE unique_key = ( SELECT player1_key FROM USERS_PAIR);
+
+SELECT players_sign FROM USERS_SIGN WHERE players_key = ( SELECT player1_key FROM USERS_PAIR);
+
+
+TRUNCATE TABLE USERS_SIGN;
+TRUNCATE TABLE USERS_PAIR;
+
+UPDATE USERS SET pair_id = NULL WHERE userId IN (1,2,3,4);

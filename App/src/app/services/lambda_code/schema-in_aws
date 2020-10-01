@@ -1,0 +1,36 @@
+type Mutation {
+	sendCellData(cellData: data!): cellInfo!
+}
+
+type Query {
+	getAllUsers: cellInfo!
+}
+
+type Subscription {
+	cellPost: cellInfo!
+		@aws_subscribe(mutations: ["sendCellData"])
+}
+
+type cellInfo {
+	col: Int!
+	name: String!
+	sign: String!
+	key: String!
+	pairId: Int!
+	retry: Boolean
+}
+
+input data {
+	col: Int!
+	name: String!
+	sign: String!
+	key: String!
+	pairId: Int!
+	retry: Boolean
+}
+
+schema {
+	query: Query
+	mutation: Mutation
+	subscription: Subscription
+}

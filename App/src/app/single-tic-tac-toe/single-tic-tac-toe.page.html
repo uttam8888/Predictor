@@ -1,0 +1,350 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>System</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-header >
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start" class="backbtn" [routerLink]="['/options']">
+      <ion-img src='../../assets/images/back6.png'></ion-img>
+    </ion-buttons>
+    <h1>Single Player</h1>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding ioncontent-bg">
+  <!-- <ion-item>
+    <a href="javascript:void(0);" [routerLink]="['/home']">
+      <ion-icon name="arrow-back-sharp"></ion-icon>&nbsp;&nbsp;&nbsp;Back
+    </a>
+  </ion-item> -->
+
+  <!-- <ion-card> -->
+  <!-- <ion-card-header>
+      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+      <ion-card-title>Card Title</ion-card-title>
+    </ion-card-header> -->
+
+  <!-- <ion-card-content> -->
+
+    <ion-grid *ngIf="showDisableGrid">
+      <ion-row>
+       <ion-card class="card-css">
+         <ion-card-content>
+           <ion-row>
+           <ion-col size="2.5">
+             <button id="demo2" mat-mini-fab style="margin-left: 10px;">P1</button>
+             <!-- <input type="text" readonly class="form-control" value="P1"> -->
+           </ion-col>
+           <ion-col size="6">
+             <input  style="border-radius: 20px;" type="text" readonly class="form-control"  [(ngModel)]="playerOneName">
+           </ion-col>
+           <ion-col size="3.5">
+             <input  style="border-radius: 20px;" type="text" readonly class="form-control"  [(ngModel)]="playerOneSign">
+           </ion-col>
+         </ion-row>
+         </ion-card-content>
+       </ion-card>
+      </ion-row>
+      <ion-row>
+       <ion-card class="card-css">
+         <ion-card-content>
+           <ion-row>
+           <ion-col size="2.5">
+             <button id="demo3" mat-mini-fab style="margin-left: 10px;">P2</button>
+             <!-- <input type="text" readonly class="form-control" value="P1"> -->
+           </ion-col>
+           <ion-col size="6">
+             <input  style="border-radius: 20px;" type="text" readonly class="form-control"  [(ngModel)]="playerTwoName">
+           </ion-col>
+           <ion-col size="3.5">
+             <input  style="border-radius: 20px;" type="text" readonly class="form-control"  [(ngModel)]="playerTwoSign">
+           </ion-col>
+         </ion-row>
+         </ion-card-content>
+       </ion-card>
+      </ion-row>
+    </ion-grid>
+
+  <ion-card *ngIf="!showDisableGrid" style="border-radius: 40px;">
+    <ion-card-content style="background-color: gold;">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="3.5">
+              <input type="text" style="border-radius: 40px;" readonly class="form-control" value="Player 1">
+            </ion-col>
+            <ion-col size="4.5">
+              <input style="border-radius: 40px;" *ngIf="(retryFlag && !startFlag) || !retryFlag" type="text" class="form-control"  [(ngModel)]="playerOneName" placeholder="First Name">
+              <input style="border-radius: 40px;" *ngIf="retryFlag && startFlag" type="text" readonly class="form-control"  [(ngModel)]="playerOneName">
+            </ion-col>
+            <ion-col size="4">
+              <ion-select style="border-radius: 40px;" *ngIf="(retryFlag && !startFlag) || !retryFlag" class = "drpDown" [(ngModel)]="playerOneSign" (ionChange)="signChangeOne($event)" (click)="signClick()" placeholder="Select One">
+                <ion-select-option value="cross">Cross</ion-select-option>
+                <ion-select-option value="circle">Circle</ion-select-option>
+              </ion-select>
+              <input *ngIf="retryFlag && startFlag" type="text" readonly class="form-control"  [(ngModel)]="playerOneSign">
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="3.5">
+              <input style="border-radius: 40px;" type="text" readonly class="form-control" value="Player 2">
+            </ion-col>
+            <ion-col size="4.5">
+              <!-- <input *ngIf="(retryFlag && !startFlag) || !retryFlag" type="text" class="form-control"  [(ngModel)]="playerTwoName" placeholder="First Name"> -->
+              <!-- <input *ngIf="retryFlag && startFlag" type="text" readonly class="form-control"  [(ngModel)]="playerTwoName"> -->
+              <input style="border-radius: 40px;" type="text" readonly class="form-control"  [(ngModel)]="playerTwoName">
+            </ion-col>
+            <ion-col size="4">
+              <!-- <ion-select *ngIf="(retryFlag && !startFlag) || !retryFlag" class = "drpDown" [(ngModel)]="playerTwoSign" (ionChange)="signChangeTwo($event)" (click)="signClick()"  placeholder="Select One">
+                <ion-select-option value="cross">Cross</ion-select-option>
+                <ion-select-option value="circle">Circle</ion-select-option>
+              </ion-select>
+              <input *ngIf="retryFlag && startFlag" type="text" readonly class="form-control"  [(ngModel)]="playerTwoSign"> -->
+              <input  style="border-radius: 40px;" type="text" readonly class="form-control"  [(ngModel)]="playerTwoSign">
+            </ion-col>
+          </ion-row>
+
+          <ion-row >
+            <ion-col size="1">
+              <ion-checkbox [disabled]="retryFlag && startFlag" checked={{timerClick}} class="ion-float-right" id = "autoFillID" color="primary" (click)="getAutoDate($event)"  name="first"></ion-checkbox>
+            </ion-col>
+            <ion-col size = "5">
+              <ion-badge *ngIf="!timerChecked && (retryFlag && startFlag)" color="medium"><-- Click checkbox to take timer challenge !</ion-badge>
+              <ion-badge *ngIf="!timerChecked && !(retryFlag && startFlag)" color="secondary"><-- Click checkbox to take timer challenge !</ion-badge>
+              <ion-badge *ngIf="timerChecked && !(retryFlag && startFlag)" color="secondary">Set time in seconds</ion-badge>
+              <ion-badge *ngIf="timerChecked && (retryFlag && startFlag)" color="medium">Set time in seconds</ion-badge>
+            </ion-col>
+            <ion-col size="6">
+              <ion-select style="border-radius: 40px;" *ngIf="timerChecked"  value = {{timerClicked}} [disabled]="retryFlag && startFlag" class = "timerDrpDown"   (ionChange)="getTime($event)" placeholder="Select One">
+                <ion-select-option value="1">1</ion-select-option>
+                <ion-select-option value="2">2</ion-select-option>
+                <ion-select-option value="3">3</ion-select-option>
+                <ion-select-option value="4">4</ion-select-option>
+                <ion-select-option value="5">5</ion-select-option>
+                <ion-select-option value="6">6</ion-select-option>
+                <ion-select-option value="7">7</ion-select-option>
+                <ion-select-option value="8">8</ion-select-option>
+                <ion-select-option value="9">9</ion-select-option>
+                <ion-select-option value="10">10</ion-select-option>
+                <ion-select-option value="11">11</ion-select-option>
+                <ion-select-option value="12">12</ion-select-option>
+                <ion-select-option value="13">13</ion-select-option>
+                <ion-select-option value="14">14</ion-select-option>
+                <ion-select-option value="15">15</ion-select-option>
+                <ion-select-option value="16">16</ion-select-option>
+                <ion-select-option value="17">17</ion-select-option>
+                <ion-select-option value="18">18</ion-select-option>
+                <ion-select-option value="19">19</ion-select-option>
+                <ion-select-option value="20">20</ion-select-option>
+                <ion-select-option value="21">21</ion-select-option>
+                <ion-select-option value="22">22</ion-select-option>
+                <ion-select-option value="23">23</ion-select-option>
+                <ion-select-option value="24">24</ion-select-option>
+                <ion-select-option value="25">25</ion-select-option>
+                <ion-select-option value="26">26</ion-select-option>
+                <ion-select-option value="27">27</ion-select-option>
+                <ion-select-option value="28">28</ion-select-option>
+                <ion-select-option value="29">29</ion-select-option>
+                <ion-select-option value="30">30</ion-select-option>
+                <ion-select-option value="31">31</ion-select-option>
+                <ion-select-option value="32">32</ion-select-option>
+                <ion-select-option value="33">33</ion-select-option>
+                <ion-select-option value="34">34</ion-select-option>
+                <ion-select-option value="35">35</ion-select-option>
+                <ion-select-option value="36">36</ion-select-option>
+                <ion-select-option value="37">37</ion-select-option>
+                <ion-select-option value="38">38</ion-select-option>
+                <ion-select-option value="39">39</ion-select-option>
+                <ion-select-option value="40">40</ion-select-option>
+                <ion-select-option value="41">41</ion-select-option>
+                <ion-select-option value="42">42</ion-select-option>
+                <ion-select-option value="43">43</ion-select-option>
+                <ion-select-option value="44">44</ion-select-option>
+                <ion-select-option value="45">45</ion-select-option>
+                <ion-select-option value="46">46</ion-select-option>
+                <ion-select-option value="47">47</ion-select-option>
+                <ion-select-option value="48">48</ion-select-option>
+                <ion-select-option value="49">49</ion-select-option>
+                <ion-select-option value="50">50</ion-select-option>
+                <ion-select-option value="51">51</ion-select-option>
+                <ion-select-option value="52">52</ion-select-option>
+                <ion-select-option value="53">53</ion-select-option>
+                <ion-select-option value="54">54</ion-select-option>
+                <ion-select-option value="55">55</ion-select-option>
+                <ion-select-option value="56">56</ion-select-option>
+                <ion-select-option value="57">57</ion-select-option>
+                <ion-select-option value="58">58</ion-select-option>
+                <ion-select-option value="59">59</ion-select-option>
+                <ion-select-option value="60">60</ion-select-option>
+
+              </ion-select>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="ion-align-items-center">
+            <ion-col size="4">
+              <span *ngIf="startFlag"><span><ion-badge color="secondary">{{playerOneName}}</ion-badge></span><br><span><ion-badge color="warning">Win : {{playerOneWinCount}}</ion-badge></span></span>
+            </ion-col>
+            <ion-col size="5">
+              <ion-badge *ngIf="retryFlag && startFlag" color="success">Game On</ion-badge><br>
+              <button *ngIf="retryFlag && startFlag && timerChecked" id="demo2" mat-mini-fab style="margin-left: 10px;"></button>
+              <!-- <ion-spinner *ngIf="retryFlag && startFlag" name="lines"></ion-spinner> -->
+              <ion-button *ngIf="retryFlag && !startFlag" color="danger" (click)="start()">Start</ion-button>
+              <ion-button *ngIf="!retryFlag" color="danger" (click)="retry()">Re-try</ion-button>
+            </ion-col>
+            <ion-col size="3">
+              <span *ngIf="startFlag"><span><ion-badge color="secondary">{{playerTwoName}}</ion-badge></span><br><span><ion-badge color="warning">Win : {{playerTwoWinCount}}</ion-badge></span></span>
+            </ion-col>
+            
+          </ion-row>
+          
+
+        </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- <p id="demo"></p> -->
+  
+  <!-- <input  id="demo1" type="text" > -->
+
+  <!-- <div class="wrapper"> -->
+    <!-- <div class="pie spinner"></div>
+    <div class="pie filler"></div>
+    <div class="mask"></div> -->
+  <!-- </div> -->
+  <!-- <app-countdown-timer class="item-countdown" [end]="details?.expirationDate" [units]="{from: 'minute', to: 'second'}"></app-countdown-timer> -->
+  <!-- <ion-spinner *ngIf="!playerOneEnabled" name="lines" color="secondary"></ion-spinner> -->
+
+    <!-- <ion-card-header *ngIf="!winnerCall" color="secondary"> -->
+        <!-- <ion-card-title>Hurray ! {{winner}} You have rocked it !</ion-card-title> -->
+    <!-- </ion-card-header> -->
+    <ion-chip *ngIf="!winnerCall && !timeExpMsg" class="ion-chip-msg"><ion-label>Hurray ! {{winner}} You have rocked it !</ion-label></ion-chip>
+    <ion-chip *ngIf="timeExpMsg" class="ion-chip-msg"><ion-label>Sorry ! Time got expired</ion-label></ion-chip>
+    
+    <!-- <ion-chip class="ion-chip-test"><ion-label>{{spinnerText}}</ion-label></ion-chip> -->
+  <ion-grid *ngIf="showTicTacTable" class="">
+
+    <ion-row>
+      <ion-col size="4" (click)="systemEnable ? '' : col_one()" class="tic-tac-col">
+        <ion-spinner *ngIf="!col_one_enable" name="crescent" color = "secondary" class = "col-spinner"></ion-spinner>
+        <ion-chip *ngIf="!col_one_enable" style="margin-top: -100px;"><ion-label>{{spinnerText}}</ion-label></ion-chip>
+        <input *ngIf="col_one_enable && col_one_cross_enable" type="image" src="../assets/images/cross4-red.png"
+          alt="Submit" class="delete-icon">
+        <input *ngIf="col_one_enable && !col_one_cross_enable" type="image" src="../assets/images/circle3-black.png"
+          alt="Submit" class="delete-icon">
+          <!-- <ion-chip *ngIf="col_one_horizontal" class="ion-chip-horizontal"><ion-label></ion-label></ion-chip> -->
+          <ion-item-divider *ngIf="col_one_horizontal"   class="divider-horizontal"></ion-item-divider>
+          <ion-item-divider *ngIf="col_one_vertical"  class="divider-vertical"></ion-item-divider>
+          <ion-item-divider *ngIf="col_one_diagonal" class="divider-diagonal"></ion-item-divider>
+      </ion-col>
+      <ion-col size="4" (click)="systemEnable ? '' : col_two()" class="tic-tac-col">
+        <ion-spinner *ngIf="!col_two_enable" name="crescent" color = "secondary" class = "col-spinner"></ion-spinner>
+        <ion-chip *ngIf="!col_two_enable" style="margin-top: -100px;"><ion-label>{{spinnerText}}</ion-label></ion-chip>
+        <input *ngIf="col_two_enable && col_two_cross_enable" type="image" src="../assets/images/cross4-red.png"
+          alt="Submit" class="delete-icon">
+        <input *ngIf="col_two_enable && !col_two_cross_enable" type="image" src="../assets/images/circle3-black.png"
+          alt="Submit" class="delete-icon">
+          <!-- <ion-chip *ngIf="col_two_horizontal" class="ion-chip-horizontal"><ion-label></ion-label></ion-chip> -->
+          <ion-item-divider *ngIf="col_two_horizontal"  class="divider-horizontal"></ion-item-divider>
+          <ion-item-divider *ngIf="col_two_vertical"  class="divider-vertical"></ion-item-divider>
+        </ion-col>
+      <ion-col size="4" (click)="systemEnable ? '' : col_three()" class="tic-tac-col">
+        <ion-spinner *ngIf="!col_three_enable" name="crescent" color = "secondary" class = "col-spinner"></ion-spinner>
+        <ion-chip *ngIf="!col_three_enable" style="margin-top: -100px;"><ion-label>{{spinnerText}}</ion-label></ion-chip>
+        <input *ngIf="col_three_enable && col_three_cross_enable" type="image" src="../assets/images/cross4-red.png"
+          alt="Submit" class="delete-icon">
+        <input *ngIf="col_three_enable && !col_three_cross_enable" type="image" src="../assets/images/circle3-black.png"
+          alt="Submit" class="delete-icon">
+          <ion-item-divider *ngIf="col_three_horizontal"  class="divider-horizontal"></ion-item-divider>
+          <ion-item-divider *ngIf="col_three_vertical"  class="divider-vertical"></ion-item-divider>
+          <ion-item-divider *ngIf="col_three_diagonal" class="divider-diagonal-right"></ion-item-divider>
+          <!-- <ion-chip *ngIf="col_three_horizontal" class="ion-chip-horizontal"><ion-label></ion-label></ion-chip> -->
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="4" (click)="systemEnable ? '' : col_four()" class="tic-tac-col">
+        <ion-spinner *ngIf="!col_four_enable" name="crescent" color = "secondary" class = "col-spinner"></ion-spinner>
+        <ion-chip *ngIf="!col_four_enable" style="margin-top: -100px;"><ion-label>{{spinnerText}}</ion-label></ion-chip>
+        <input *ngIf="col_four_enable && col_four_cross_enable" type="image" src="../assets/images/cross4-red.png"
+          alt="Submit" class="delete-icon">
+        <input *ngIf="col_four_enable && !col_four_cross_enable" type="image" src="../assets/images/circle3-black.png"
+          alt="Submit" class="delete-icon">
+          <!-- <ion-chip *ngIf="col_four_horizontal" class="ion-chip-horizontal"><ion-label></ion-label></ion-chip> -->
+          <ion-item-divider *ngIf="col_four_horizontal" class="divider-horizontal"></ion-item-divider>
+          <ion-item-divider *ngIf="col_four_vertical" class="divider-vertical"></ion-item-divider>
+      </ion-col>
+      <ion-col size="4" (click)="systemEnable ? '' : col_five()" class="tic-tac-col">
+        <ion-spinner *ngIf="!col_five_enable" name="crescent" color = "secondary" class = "col-spinner"></ion-spinner>
+        <ion-chip *ngIf="!col_five_enable" style="margin-top: -100px;"><ion-label>{{spinnerText}}</ion-label></ion-chip>
+        <input *ngIf="col_five_enable && col_five_cross_enable" type="image" src="../assets/images/cross4-red.png"
+          alt="Submit" class="delete-icon">
+        <input *ngIf="col_five_enable && !col_five_cross_enable" type="image" src="../assets/images/circle3-black.png"
+          alt="Submit" class="delete-icon">
+          <ion-item-divider *ngIf="col_five_horizontal"  class="divider-horizontal"></ion-item-divider>
+          <ion-item-divider *ngIf="col_five_vertical"  class="divider-vertical"></ion-item-divider>
+          <ion-item-divider *ngIf="col_five_diagonal"  class="divider-diagonal"></ion-item-divider>
+          <ion-item-divider *ngIf="col_five_diagonal_right"  class="divider-diagonal-right"></ion-item-divider>
+          <!-- <ion-chip *ngIf="col_five_horizontal" class="ion-chip-horizontal"><ion-label></ion-label></ion-chip> -->
+          <!-- <ion-chip *ngIf="col_one_enable" class="ion-chip-test-diagonal-latest"><ion-label></ion-label></ion-chip> -->
+      </ion-col>
+      <ion-col size="4" (click)="systemEnable ? '' : col_six()" class="tic-tac-col">
+        <ion-spinner *ngIf="!col_six_enable" name="crescent" color = "secondary" class = "col-spinner"></ion-spinner>
+        <ion-chip *ngIf="!col_six_enable" style="margin-top: -100px;"><ion-label>{{spinnerText}}</ion-label></ion-chip>
+        <input *ngIf="col_six_enable && col_six_cross_enable" type="image" src="../assets/images/cross4-red.png"
+          alt="Submit" class="delete-icon">
+        <input *ngIf="col_six_enable && !col_six_cross_enable" type="image" src="../assets/images/circle3-black.png"
+          alt="Submit" class="delete-icon">
+          <ion-item-divider *ngIf="col_six_horizontal"  class="divider-horizontal"></ion-item-divider>
+          <ion-item-divider *ngIf="col_six_vertical"  class="divider-vertical"></ion-item-divider>
+          <!-- <ion-chip *ngIf="col_six_horizontal" class="ion-chip-horizontal"><ion-label></ion-label></ion-chip> -->
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="4" (click)="systemEnable ? '' : col_seven()" class="tic-tac-col">
+        <ion-spinner *ngIf="!col_seven_enable" name="crescent" color = "secondary" class = "col-spinner"></ion-spinner>
+        <ion-chip *ngIf="!col_seven_enable" style="margin-top: -100px;"><ion-label>{{spinnerText}}</ion-label></ion-chip>
+        <input *ngIf="col_seven_enable && col_seven_cross_enable" type="image" src="../assets/images/cross4-red.png"
+          alt="Submit" class="delete-icon">
+        <input *ngIf="col_seven_enable && !col_seven_cross_enable" type="image" src="../assets/images/circle3-black.png"
+          alt="Submit" class="delete-icon">
+          <ion-item-divider *ngIf="col_seven_horizontal"  class="divider-horizontal"></ion-item-divider>
+          <ion-item-divider *ngIf="col_seven_vertical"  class="divider-vertical"></ion-item-divider>
+          <ion-item-divider *ngIf="col_seven_diagonal"  class="divider-diagonal-right"></ion-item-divider>
+          <!-- <ion-chip *ngIf="col_seven_horizontal" class="ion-chip-horizontal"><ion-label></ion-label></ion-chip> -->
+      </ion-col>
+      <ion-col size="4" (click)="systemEnable ? '' : col_eight()" class="tic-tac-col">
+        <ion-spinner *ngIf="!col_eight_enable" name="crescent" color = "secondary" class = "col-spinner"></ion-spinner>
+        <ion-chip *ngIf="!col_eight_enable" style="margin-top: -100px;"><ion-label>{{spinnerText}}</ion-label></ion-chip>
+        <input *ngIf="col_eight_enable && col_eight_cross_enable" type="image" src="../assets/images/cross4-red.png"
+          alt="Submit" class="delete-icon">
+        <input *ngIf="col_eight_enable && !col_eight_cross_enable" type="image" src="../assets/images/circle3-black.png"
+          alt="Submit" class="delete-icon">
+          <ion-item-divider *ngIf="col_eight_horizontal"  class="divider-horizontal"></ion-item-divider>
+          <ion-item-divider *ngIf="col_eight_vertical"  class="divider-vertical"></ion-item-divider>
+          <!-- <ion-chip *ngIf="col_eight_horizontal" class="ion-chip-horizontal"><ion-label></ion-label></ion-chip> -->
+      </ion-col>
+      <ion-col size="4" (click)="systemEnable ? '' : col_nine()" class="tic-tac-col">
+        <ion-spinner *ngIf="!col_nine_enable" name="crescent" color = "secondary" class = "col-spinner"></ion-spinner>
+        <ion-chip *ngIf="!col_nine_enable" style="margin-top: -100px;"><ion-label>{{spinnerText}}</ion-label></ion-chip>
+        <input *ngIf="col_nine_enable && col_nine_cross_enable" type="image" src="../assets/images/cross4-red.png"
+          alt="Submit" class="delete-icon">
+        <input *ngIf="col_nine_enable && !col_nine_cross_enable" type="image" src="../assets/images/circle3-black.png"
+          alt="Submit" class="delete-icon">
+          <ion-item-divider *ngIf="col_nine_horizontal"  class="divider-horizontal"></ion-item-divider>
+          <ion-item-divider *ngIf="col_nine_vertical"  class="divider-vertical"></ion-item-divider>
+          <ion-item-divider *ngIf="col_nine_diagonal"  class="divider-diagonal"></ion-item-divider>
+          <!-- <ion-chip *ngIf="col_nine_horizontal" class="ion-chip-horizontal"><ion-label></ion-label></ion-chip> -->
+          <!-- <ion-chip *ngIf="col_one_enable" class="ion-chip-test-diagonal-latest"><ion-label></ion-label></ion-chip> -->
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+  <!-- </ion-card-content>
+  </ion-card> -->
+  
+
+
+</ion-content>

@@ -1,0 +1,187 @@
+<!-- <ion-header>
+  <ion-toolbar color="danger">
+    <ion-title>Utility App</ion-title>
+    <ion-buttons slot="start" auto-hide="false">
+      <ion-menu-button menu = "first"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content [fullscreen]="true" >
+  <ion-button>
+    test
+  </ion-button>
+  <!-- <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <strong>Ready to create an app?</strong>
+    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  </div> -->
+
+  <!-- <ion-content>
+    <div class="fullscreen-bg">
+      <video autoplay loop muted webkit-playsinline> -->
+        <!-- <source src="./assets/video/background/forest-cover.mp4" types='video/mp4; codecs="h.264"'> -->
+        <!-- <source src="./assets/video/background/forest-cover.webm" types="video/webm"> -->
+          <!-- <source src="../../assets/images/Mystery.webm" types="video/webm"> -->
+            <!-- <source src="../../assets/images/Snow_Land.mp4" types='video/mp4; codecs="h.264"'> -->
+            <!-- <source src="../../assets/images/small.webm" types="video/webm">
+        </video>
+    </div>
+    <div class="center animated zoomIn">
+      <h1>Beautiful App</h1>
+      <h2>Fast, Easy. Cheap .</h2>
+    </div>
+  </ion-content> -->
+
+  <!-- <svg viewBox="0 0 160 160" width="160" height="160">
+    <circle cx="80" cy="80" r="50" />
+    <g transform=" matrix(0.866, -0.5, 0.25, 0.433, 80, 80)">
+      <path d="M 0,70 A 65,70 0 0,0 65,0 5,5 0 0,1 75,0 75,70 0 0,1 0,70Z" fill="#FFF">
+        <animateTransform attributeName="transform" type="rotate" from="360 0 0" to="0 0 0" dur="1s" repeatCount="indefinite" />
+      </path>
+    </g>
+    <path d="M 50,0 A 50,50 0 0,0 -50,0Z" transform="matrix(0.866, -0.5, 0.5, 0.866, 80, 80)" />
+  </svg> -->
+
+  <!-- <div class="wrapper">
+		<div class="ring"></div>
+		<div class="sun"></div>
+		<div class="planets">
+			<div class="one"></div>
+			<div class="two"></div>
+			<div class="three"></div>
+		</div>
+  </div> -->
+  
+</ion-content>
+
+<!-- Data to display after skeleton screen -->
+<!-- <div *ngIf="data">
+  <div class="ion-padding">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac eros est. Cras iaculis pulvinar arcu non vehicula. Fusce at quam a eros malesuada condimentum. Aliquam tincidunt tincidunt vehicula.
+  </div>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label>
+        Data
+      </ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-avatar slot="start">
+        <img src="./avatar.svg">
+      </ion-avatar>
+      <ion-label>
+        <h3>
+          {{ data.heading }}
+        </h3>
+        <p>
+          {{ data.para1 }}
+        </p>
+        <p>
+          {{ data.para2 }}
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <img src="./thumbnail.svg">
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          {{ data.heading }}
+        </h3>
+        <p>
+          {{ data.para1 }}
+        </p>
+        <p>
+          {{ data.para2 }}
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="call" slot="start"></ion-icon>
+      <ion-label>
+        <h3>
+          {{ data.heading }}
+        </h3>
+        <p>
+          {{ data.para1 }}
+        </p>
+        <p>
+          {{ data.para2 }}
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</div> -->
+
+<!-- Skeleton screen -->
+<div *ngIf="!data">
+  <div class="ion-padding custom-skeleton">
+    <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+  </div>
+
+  <!-- <ion-list>
+    <ion-list-header>
+      <ion-label>
+        <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+      </ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-skeleton-text animated style="width: 27px; height: 27px" slot="start"></ion-skeleton-text>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list> -->
+</div>
